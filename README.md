@@ -1,0 +1,11 @@
+# Laocoon_android_trojan_detector_demo
+Laocoon - Trojan detector for android apps demo 
+
+Android Apps side-loaded from 3rd party websites can contain
+malicious viruses unbeknowst to the user! 
+
+Laocoon is a simple security concept app demonstration that 
+offers a solution to close this troubling loophole. 
+
+<img src="laocoon_logo_i.png">
+<img src="laocoon_logo_s.png">
