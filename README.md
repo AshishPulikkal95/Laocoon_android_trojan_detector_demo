@@ -6,5 +6,7 @@ malicious viruses unbeknowst to the user!<br/>
 Laocoon is a simple security concept app demonstration that 
 offers a solution to close this troubling loophole. 
 
-<img src="laocoon_logo_i.png">
-<img src="laocoon_logo_s.png">
+ <p align="center"> 
+<img src="laocoon_logo_i.png"  alt="laocoon_icon_logo">
+<img src="laocoon_logo_s.png"  alt="laocoon_small_logo">
+</p>
