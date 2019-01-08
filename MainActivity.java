@@ -8,17 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+
 import android.widget.TextView;
 
-import android.provider.Settings.Secure;
 import android.widget.Toast;
 import android.graphics.Color;
 
-import android.content.pm.PackageManager;
+import android.view.Window;
+import java.lang.Runnable;
 import android.Manifest;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.app.ActivityCompat;
@@ -28,8 +26,6 @@ import java.util.zip.*;
 import java.io.InputStream;
 import java.io.IOException;
 import java.util.Scanner;
-
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,9 +37,13 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton appButton1;
     private ImageButton appButton2;
     private ImageButton appButton3;
+    private ImageButton appButton4;
     private ImageButton appButton5;
+
     private ImageButton appButton6;
     private ImageButton appButton7;
+    private ImageButton appButton8;
+    private ImageButton appButton9;
     private ImageButton appButton10;
     private TextView detectResult_display;
     SharedPreferences sharedPref;
@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //remove title bar
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //this.setContentView(R.layout.activity_main);
+
         sharedPref = this.getSharedPreferences("com.Chaisync.sharedPref", Context.MODE_PRIVATE);
 
         appName_display = (TextView) findViewById(R.id.appname_textview);
@@ -76,10 +80,16 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager.GET_META_DATA | PackageManager.GET_SHARED_LIBRARY_FILES
         );
 
-        /*for (int i = 0; i < apps.size(); i++)
+        /*
+        //search tool for finding installed apps. Commented out in final build
+        for (int i = 0; i < apps.size(); i++)
         {
             Log.d("ManifestGetter",  i + ", " +apps.get(i).publicSourceDir);
-        }*/
+        }
+        */
+        // apps[30] = minecraft, /data/app/cynthiaJGrenier.craftingtable.minecraftguide-1/base.apk
+        // apps[36], /data/app/com.mauriciotogneri.fileexplorer-1/base.apk
+        // apps[141], /data/app/com.youmi.filemasterlocal-1/base.apk
         // whale camera = 61
 
 
@@ -87,20 +97,21 @@ public class MainActivity extends AppCompatActivity {
         appButton1 = (ImageButton) findViewById(R.id.app1);
         appButton1.setOnClickListener(new View.OnClickListener(){
           public void onClick(View v){
-              int currentapp = 0; // 0, 30, 113
+              int currentapp = 30; // minecraft
               ApplicationInfo tempApp = apps.get(currentapp);
               updateTextInfo_box1(tempApp.className, tempApp.publicSourceDir);
-              Toast.makeText(sync_context, "App1", Toast.LENGTH_LONG).show();
+              //Toast.makeText(sync_context, "App1", Toast.LENGTH_LONG).show();
             }
         });
 
         appButton6 = (ImageButton) findViewById(R.id.app6);
         appButton6.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                int currentapp = 0; // 0, 30, 113
-                ApplicationInfo tempApp = apps.get(currentapp);
-                updateTextInfo_box2(tempApp.className, tempApp.publicSourceDir);
-                Toast.makeText(sync_context, "App6", Toast.LENGTH_LONG).show();
+                ContextCompat.checkSelfPermission(sync_context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                ActivityCompat.requestPermissions((Activity) sync_context,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
+                updateTextInfo_box2("Minecraft Crafting Guide", "/storage/emulated/0/Download/crafting-guide-for-minecraft.apk");
+                //Toast.makeText(sync_context, "App6", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -110,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 int currentapp = 0; // 0, 30, 113
                 ApplicationInfo tempApp = apps.get(currentapp);
                 updateTextInfo_box1(tempApp.className, tempApp.publicSourceDir);
-                Toast.makeText(sync_context, "App2", Toast.LENGTH_LONG).show();
+                //Toast.makeText(sync_context, "App2", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -119,18 +130,51 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 int currentapp = 0; // 0, 30, 113
                 ApplicationInfo tempApp = apps.get(currentapp);
-                updateTextInfo_box2(tempApp.className, tempApp.publicSourceDir);
-                Toast.makeText(sync_context, "App7", Toast.LENGTH_LONG).show();
+                updateTextInfo_box2("YouTube", tempApp.publicSourceDir);
+                //Toast.makeText(sync_context, "App7", Toast.LENGTH_LONG).show();
             }
         });
 
         appButton3 = (ImageButton) findViewById(R.id.app3);
         appButton3.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                int currentapp = 30; // 0, 30, 113
+                int currentapp = 36; // File Explorer
                 ApplicationInfo tempApp = apps.get(currentapp);
-                updateTextInfo_box2(tempApp.className, tempApp.publicSourceDir);
-                Toast.makeText(sync_context, "App3", Toast.LENGTH_LONG).show();
+                updateTextInfo_box1(tempApp.className, tempApp.publicSourceDir);
+                //Toast.makeText(sync_context, "App3", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        appButton8 = (ImageButton) findViewById(R.id.app8);
+        appButton8.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                ContextCompat.checkSelfPermission(sync_context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                ActivityCompat.requestPermissions((Activity) sync_context,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
+                updateTextInfo_box2("File Explorer ApkMonk", "/storage/emulated/0/Download/global.fm.filesexplorer_2016-10-08.apk");
+                //Toast.makeText(sync_context, "App8", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        appButton4 = (ImageButton) findViewById(R.id.app4);
+        appButton4.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                int currentapp = 141; // 61 = whale camera
+                ApplicationInfo tempApp = apps.get(currentapp);
+                updateTextInfo_box1(tempApp.className, tempApp.publicSourceDir);
+                //Toast.makeText(sync_context, "App4", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        appButton9 = (ImageButton) findViewById(R.id.app9);
+        appButton9.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                ContextCompat.checkSelfPermission(sync_context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                ActivityCompat.requestPermissions((Activity) sync_context,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
+                updateTextInfo_box2("FileMaster ApkSum", "/storage/emulated/0/Download/com.tec.file.master-5.3.1-free-www.apksum.com.apk");
+                //Toast.makeText(sync_context, "App9", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -140,21 +184,29 @@ public class MainActivity extends AppCompatActivity {
                 int currentapp = 61; // 61 = whale camera
                 ApplicationInfo tempApp = apps.get(currentapp);
                 updateTextInfo_box1("Whale Camera", tempApp.publicSourceDir);
-                Toast.makeText(sync_context, "App5", Toast.LENGTH_LONG).show();
+                //Toast.makeText(sync_context, "App5", Toast.LENGTH_LONG).show();
             }
         });
 
         appButton10 = (ImageButton) findViewById(R.id.app10);
         appButton10.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                //int currentapp = 61; // 61 = whale camera
-                //ApplicationInfo tempApp = apps.get(currentapp);
+                /*
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                detectResult_display.setText("~~Scanning~~");
+                                detectResult_display.setTextColor(Color.BLUE);
+                            }});
+                }}).start();
+                */
                 ContextCompat.checkSelfPermission(sync_context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
                 ActivityCompat.requestPermissions((Activity) sync_context,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        0);
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
                 updateTextInfo_box2("Whale Camera ApkPure", "/storage/emulated/0/Download/Whale Camera_v3.4.3_apkpure.com.apk");
-                Toast.makeText(sync_context, "App10", Toast.LENGTH_LONG).show();
+                //Toast.makeText(sync_context, "App10", Toast.LENGTH_LONG).show();
             }
         });
     };
@@ -167,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
         appName_display.setText("" + manifest_text);
         permission_text = getManifestData(appDirectory,1 );
         permission_display.setText("" + permission_text);
+        cleanResult();
     }
 
     private void updateTextInfo_box2(String appName, String appDirectory){
@@ -180,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         printResult();
     }
 
-    //extract AndroidManifest.xml from app apk
+    //1. extract AndroidManifest.xml from app apk
     String getManifestData(String appDirectory, int appNumber) {
         String permission_text2 = "";
         String[] permissionList = new String[0];
@@ -188,14 +241,21 @@ public class MainActivity extends AppCompatActivity {
             ZipFile apk = new ZipFile(appDirectory);
             ZipEntry manifest = apk.getEntry("AndroidManifest.xml");
             if (manifest != null){
+                //2. manifest data is now stored in inputstream
                 InputStream stream = apk.getInputStream(manifest);
+                //3. manifest data is now stored inputstream --> scanner text
                 Scanner s = new Scanner(stream);
                 String result = "";
                 while (s.hasNext()) {
                         result += s.next();
                 }
+
+                //4. in scanner text, filter to remove all char except letters
                 result = result.replaceAll("[^a-zA-Z]", "");
                 //Log.d("Mani0festGetter",  result);
+
+                //5. in filter text, look for all "andriodpermission" to find
+                // permission requests within AndroidManifest.xml
                 permissionList = result.split("androidpermission");
                 if (permissionList.length > 0)
                     for (int i = 1; i < permissionList.length; i++){
@@ -229,6 +289,12 @@ public class MainActivity extends AppCompatActivity {
             detectResult_display.setTextColor(Color.RED);
             permission2_display.setTextColor(Color.RED);
         }
+    }
+
+    private void cleanResult(){
+            detectResult_display.setText("");
+            appName2_display.setText("");
+            permission2_display.setText("");
     }
 
 

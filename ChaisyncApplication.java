@@ -12,6 +12,7 @@ import io.socket.client.Socket;
 
 public class ChaisyncApplication extends Application{
 
+    /*
     private Socket socket;
     {
         try {
@@ -26,5 +27,5 @@ public class ChaisyncApplication extends Application{
     public Socket getSocket(){
         return socket;
     }
-
+    */
 }
