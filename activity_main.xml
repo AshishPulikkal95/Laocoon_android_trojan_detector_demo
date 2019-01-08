@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_layout"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.chaisync.AppTrojanDetector.MainActivity">
+
+    <!--EditText
+        android:id="@+id/nameInputText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Message" /-->
+
+    <TextView
+        android:id="@+id/appLabel_viewtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:hint="@string/appLabel_text"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/appname_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="15dp"
+        android:hint="No app selected"
+        android:maxLines="4" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="15dp"
+        android:hint="Permissions:"
+        android:maxLines="1" />
+
+    <ScrollView
+        android:id="@+id/scroll_box"
+        android:layout_height="120dip"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/permission_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:hint="-"
+            android:maxLines="10"/>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/appLabel2_viewtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:hint="@string/appLabel2_text"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/appname2_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="15dp"
+        android:hint="No app selected"
+        android:maxLines="1" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="15dp"
+        android:hint="Permissions:"
+        android:maxLines="1" />
+
+    <ScrollView
+        android:id="@+id/scroll_box2"
+        android:layout_height="120dip"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/permission2_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:hint="-"
+            android:maxLines="10"/>
+    </ScrollView>
+
+
+
+    <!--EditText
+        android:id="@+id/reminderTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Message" /-->
+    <TextView
+        android:id="@+id/detectresult_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:hint="@string/appLabel3_text"
+        android:maxLines="1" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/inner_layout"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/app1"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerCrop"
+                android:background="#0000"
+                android:src="@drawable/pokemon_go_icon"
+                android:onClick="onClickBtn"/>
+            <ImageButton
+                android:id="@+id/app2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerCrop"
+                android:background="#0000"
+                android:src="@drawable/youtube_icon"
+                android:onClick="onClickBtn"/>
+            <ImageButton
+                android:id="@+id/app3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerCrop"
+                android:background="#0000"
+                android:src="@drawable/whatsapp_icon"
+                android:onClick="onClickBtn"/>
+            <ImageButton
+                android:id="@+id/app4"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerCrop"
+                android:background="#0000"
+                android:src="@drawable/pokemon_go_icon"
+                android:onClick="onClickBtn"/>
+            <ImageButton
+                android:id="@+id/app5"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerCrop"
+                android:background="#0000"
+                android:src="@drawable/whalecamera_icon"
+                android:onClick="onClickBtn"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/app6"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:background="#0000"
+            android:src="@drawable/pokemon_go_icon"
+            android:onClick="onClickBtn"/>
+        <ImageButton
+            android:id="@+id/app7"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:background="#0000"
+            android:src="@drawable/youtube_icon"
+            android:onClick="onClickBtn"/>
+        <ImageButton
+            android:id="@+id/app8"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:background="#0000"
+            android:src="@drawable/pokemon_go_icon"
+            android:onClick="onClickBtn"/>
+        <ImageButton
+            android:id="@+id/app9"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:background="#0000"
+            android:src="@drawable/pokemon_go_icon"
+            android:onClick="onClickBtn"/>
+        <ImageButton
+            android:id="@+id/app10"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:background="#0000"
+            android:src="@drawable/whalecamera_icon"
+            android:onClick="onClickBtn"/>
+    </LinearLayout>
+
+    <!--TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Message From Server:" />
+
+    <TextView
+        android:id="@+id/ServerResponseTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="No message yet"
+        android:textAlignment="center"
+        android:textSize="30sp"/-->
+    <!--TextView
+        android:id="@+id/databaseView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:text="(Local database is empty)" /-->
+</LinearLayout>
